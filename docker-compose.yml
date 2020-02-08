@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+
+        jrebel-server:
+                image: "yudar1024/jrebel-ls"
+                ports:
+                        - "12345:8081"
+                restart: always
+        aria2-server: 
+                build : "./aria2"
+                ports: 
+                        - "6800:6800"
+                volumes:
+                        - "D:\\download\\aria2:/data"
+                        - "./aria2/aria2.conf:/conf/aria2.conf"
+                entrypoint:
+                        - "aria2c"
+                        - "--enable-rpc=true"
+                        - "--conf-path=/conf/aria2.conf"
+                restart: always
